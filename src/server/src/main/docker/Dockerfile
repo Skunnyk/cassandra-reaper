@@ -86,7 +86,7 @@ RUN apk add --update \
   && rm -rf /var/cache/apk/*
 
 
-ADD cassandra-reaper.yml /etc/cassandra-reaper.yml
+ADD cassandra-reaper.yml /etc/reaper/cassandra-reaper.yml
 ADD shiro.ini /etc/shiro.ini
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 ADD configure-persistence.sh /usr/local/bin/configure-persistence.sh
@@ -97,8 +97,8 @@ ADD ${SHADED_JAR} /usr/local/lib/cassandra-reaper.jar
 ADD spreaper /usr/local/bin/spreaper
 
 
-# get around `/usr/local/bin/configure-persistence.sh: line 65: can't create /etc/cassandra-reaper.yml: Interrupted system call` unknown error
-RUN touch /etc/cassandra-reaper.yml
+# get around `/usr/local/bin/configure-persistence.sh: line 65: can't create /etc/reaper/cassandra-reaper.yml: Interrupted system call` unknown error
+RUN touch /etc/reaper/cassandra-reaper.yml
 # get around `/usr/local/bin/configure-webui-authentication.sh: line 44: can't `create` /etc/shiro.ini: Interrupted system call` unknown error
 RUN touch /etc/shiro.ini
 
@@ -108,7 +108,7 @@ RUN addgroup -g 1001 -S reaper && adduser -G reaper -S -u 1001 reaper && \
     mkdir -p /etc/cassandra-reaper/shiro && \
     mkdir -p /var/log/cassandra-reaper && \
     chown reaper:reaper \
-        /etc/cassandra-reaper.yml \
+        /etc/reaper/cassandra-reaper.yml \
         /usr/local/lib/cassandra-reaper.jar \
         /usr/local/bin/entrypoint.sh \
         /usr/local/bin/configure-persistence.sh \

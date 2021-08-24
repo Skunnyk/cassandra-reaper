@@ -18,21 +18,21 @@ if [ "false" = "${REAPER_AUTH_ENABLED}" ]; then
 fi
 
 if [ ! -z "${REAPER_SHIRO_INI}" ]; then
-cat <<EOT >> /etc/cassandra-reaper.yml
+cat <<EOT >> /etc/reaper/cassandra-reaper.yml
 accessControl:
   sessionTimeout: PT10M
   shiro:
     iniConfigs: ["file:${REAPER_SHIRO_INI}"]
 EOT
 elif [ ! -z "${REAPER_AUTH_USER}" ]; then
-cat <<EOT >> /etc/cassandra-reaper.yml
+cat <<EOT >> /etc/reaper/cassandra-reaper.yml
 accessControl:
   sessionTimeout: PT10M
   shiro:
     iniConfigs: ["file:/etc/shiro.ini"]
 EOT
 else
-cat <<EOT >> /etc/cassandra-reaper.yml
+cat <<EOT >> /etc/reaper/cassandra-reaper.yml
 accessControl:
   sessionTimeout: PT10M
   shiro:
