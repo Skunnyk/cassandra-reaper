@@ -29,7 +29,7 @@ cat <<EOT >> /etc/reaper/cassandra-reaper.yml
 accessControl:
   sessionTimeout: PT10M
   shiro:
-    iniConfigs: ["file:/etc/shiro.ini"]
+    iniConfigs: ["file:/etc/reaper/shiro.ini"]
 EOT
 else
 cat <<EOT >> /etc/reaper/cassandra-reaper.yml
@@ -41,7 +41,7 @@ EOT
 fi
 
 if [ ! -z "${REAPER_AUTH_USER}" ]; then
-cat <<EOT2 >> /etc/shiro.ini
+cat <<EOT2 >> /etc/reaper/shiro.ini
 ${REAPER_AUTH_USER} = ${REAPER_AUTH_PASSWORD}, operator
 EOT2
 fi
