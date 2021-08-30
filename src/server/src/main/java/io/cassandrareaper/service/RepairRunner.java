@@ -324,7 +324,7 @@ final class RepairRunner implements Runnable {
       // The number of extended segments is moderate and timeout should be extended
       raiseTimeoutOfUnit();
     } else if (percentExtendedSegments == 0 && maxSegmentDuration < SEGMENT_DURATION_FOR_REDUCTION_THRESHOLD) {
-      // Segments are being executed very fast and could be lowered
+      // Segments are being executed very fast so segment count could be lowered
       reduceSegmentsPerNodeToScheduleForUnit();
     }
   }
